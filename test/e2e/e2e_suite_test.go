@@ -225,7 +225,7 @@ var _ = SynchronizedAfterSuite(func() {}, func() {
 			framework.DeleteAllClustersAndWait(ctx, framework.DeleteAllClustersAndWaitInput{
 				Client:    proxy.GetClient(),
 				Namespace: "default",
-			})
+			}, e2eConfig.GetIntervals(proxy.GetName(), "wait-delete-cluster")...)
 			klog.Infof("Deleted workload cluster %s/%s\n", workloadResult.Cluster.Namespace, workloadResult.Cluster.Name)
 		})
 		By("Tear down the bootstrap cluster", func() {
